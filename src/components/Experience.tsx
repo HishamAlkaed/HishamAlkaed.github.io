@@ -16,14 +16,14 @@ const Experience: React.FC = () => {
     {
       id: 1,
       role: "Rijks-I Traineeship",
-      company: "Rijkswaterstaat",
-      period: "2023 - Present",
-      description: "Leading AI and NLP initiatives to improve information retrieval and data accessibility within the Dutch government's water management infrastructure.",
+      company: "Rijksoverheid",
+      period: "Sept 2024 - Present",
+      description: "Leading AI and NLP initiatives to improve data accessibility and information retrieval within large governmental datasets.",
       achievements: [
-        "Developed a knowledge graph-based search system that reduced time to locate critical policy data by 80%",
-        "Created an automated information extraction pipeline for technical documents using LLMs",
-        "Designed and implemented multilingual data classification models with 95% accuracy",
-        "Developed dashboards for real-time monitoring of data quality metrics"
+        "Completed an 8-month project involving web crawling, scraping, PDF-to-JSON text parsing, data anonymization, and integration with Elasticsearch to structure and search large volumes of unstructured data",
+        "Developed two interactive dashboards using Streamlit and Elastic Search, designed for reusability and modularity across different datasets and use cases",
+        "Architected a flexible, modular data pipeline to enable scalability and adaptability for future projects across departments",
+        "Enhanced internal access to complex data by building tools aimed at making hidden insights easily discoverable within vast document collections"
       ],
       expanded: false
     },
@@ -31,55 +31,50 @@ const Experience: React.FC = () => {
       id: 2,
       role: "Linked Data Consultant",
       company: "Taxonic",
-      period: "2021 - 2023",
-      description: "Designed and implemented knowledge graph solutions for enterprise clients, focusing on data integration and semantic enrichment.",
+      period: "June 2024 - Aug 2024",
+      description: "Designed and implemented knowledge graph solutions for enterprise clients, focusing on data integration and semantic enrichment",
       achievements: [
-        "Built ontology-based data access systems that integrated 5+ disparate data sources",
-        "Led knowledge engineering workshops for cross-functional teams",
-        "Implemented SPARQL-based query interfaces that improved data access response times by 65%",
-        "Developed ETL pipelines for knowledge graph population from heterogeneous data sources"
+        "Contributed to SPARQL query development for a large-scale medical project (Kik-V) involving 500+ connected hospitals, enabling semantic data access and integration for a major governmental healthcare organization",
+        "Contributed to a research experiment exploring the use of Retrieval-Augmented Generation (RAG) systems for RDF-based knowledge graphs, investigating cutting-edge methods for enhancing language models with structured data"
       ],
       expanded: false
     },
     {
       id: 3,
       role: "Mathematics Tutor",
-      company: "StudyWorks",
-      period: "2019 - 2021",
-      description: "Provided personalized mathematics instruction to high school and university students.",
+      company: "Johan de Witt Scholengroep",
+      period: "Dec 2023 - May 2024",
+      description: "Provided personalized mathematics instruction to high school and university students",
       achievements: [
         "Developed custom teaching materials for students with varying learning needs",
-        "Tutored 20+ students with an average grade improvement of 1.5 points",
-        "Created analytical problem-solving frameworks that improved student comprehension",
-        "Implemented data-driven assessment methods to track student progress"
+        "Tutored 50+ students with an average grade improvement of 1.0 - 1.5 points",
+        "Focused on childeren lacking motivations and self-confidence, helping them to achieve their goals",
       ],
       expanded: false
     },
     {
       id: 4,
       role: "Teaching Assistant",
-      company: "Utrecht University",
-      period: "2018 - 2019",
-      description: "Supported professors in delivering AI and programming courses to undergraduate students.",
+      company: "Vrije Universiteit Amsterdam",
+      period: "Sept 2022 - July 2023",
+      description: "Supported professors in delivering AI and programming courses to undergraduate students",
       achievements: [
-        "Led tutorial sessions for 'Introduction to Artificial Intelligence' course",
+        "Led tutorial sessions for multiple courses: Introduction to Data Science, Databases, Intelligent Systems and Computational Intelligence",
         "Graded assignments and provided detailed feedback for over 100 students",
         "Developed supplementary learning materials for complex algorithms",
-        "Mentored students on research projects in NLP and machine learning"
+        "Mentored students on research projects in machine learning"
       ],
       expanded: false
     },
     {
       id: 5,
       role: "Operational Management Assistant",
-      company: "GlobalSign",
-      period: "2016 - 2017",
-      description: "Supported operational workflows and data management processes for digital certificate issuance.",
+      company: "Nationale Nederlanden",
+      period: "Aug 2021 - Nov 2021",
+      description: "Supported operational workflows and data management processes",
       achievements: [
-        "Automated routine reporting processes, saving 15+ hours weekly",
-        "Improved data validation procedures resulting in 40% fewer errors",
-        "Collaborated with IT team to optimize database queries for faster processing",
-        "Implemented data visualization dashboards for operational metrics"
+        "Automated dataworkflows using Power BI",
+        "Created room reservation system for meeting rooms"
       ],
       expanded: false
     }

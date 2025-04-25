@@ -15,10 +15,11 @@ const Skills: React.FC = () => {
     {
       name: "Languages",
       skills: [
-        { name: "Python", level: 90 },
+        { name: "Python", level: 95 },
         { name: "SQL", level: 85 },
-        { name: "SPARQL", level: 80 },
-        { name: "Prolog", level: 75 },
+        { name: "SPARQL", level: 85 },
+        { name: "R", level: 65 },
+        { name: "Prolog", level: 70 },
         { name: "GOAL", level: 70 }
       ]
     },
@@ -26,20 +27,27 @@ const Skills: React.FC = () => {
       name: "AI & Machine Learning",
       skills: [
         { name: "Natural Language Processing", level: 95 },
-        { name: "Large Language Models", level: 85 },
-        { name: "Deep Learning", level: 80 },
-        { name: "Computer Vision", level: 75 },
-        { name: "Transformers", level: 85 }
+        { name: "Large Language Models", level: 95 },
+        { name: "Deep Learning", level: 85 },
+        { name: "Computer Vision", level: 85 },
+        { name: "Transformers", level: 90 }
       ]
     },
     {
       name: "Tools & Libraries",
       skills: [
+        { name: "Pandas", level: 95 },
+        { name: "Git", level: 90},
         { name: "PyTorch", level: 85 },
-        { name: "TensorFlow", level: 80 },
-        { name: "Scikit-learn", level: 90 },
-        { name: "Hugging Face", level: 85 },
-        { name: "Pandas", level: 95 }
+        { name: "TensorFlow", level: 85 },
+        { name: "SKlearn", level: 90 },
+        { name: "Hugging Face", level: 90 },
+        { name: "Streamlit", level: 85 },
+        { name: "Neo4j", level: 70 },
+        { name: "npm", level: 80 },
+        { name: "Elasticsearch", level: 75 },
+        { name: "Docker", level: 70 },
+
       ]
     },
     {

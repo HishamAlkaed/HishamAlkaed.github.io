@@ -11,7 +11,8 @@ const About: React.FC = () => {
               <div className="relative w-64 h-64 mx-auto md:mx-0 overflow-hidden rounded-full border-4 border-cyan-500/20 p-1">
                 <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 via-blue-500/20 to-purple-600/20 rounded-full animate-pulse"></div>
                 <img
-                  src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+                  // src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+                  src="https://media.licdn.com/dms/image/v2/D4E03AQEsZ3UzzrLiFA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727854347860?e=1750896000&v=beta&t=SQh7pGyNWH8GLC7wVg2LPzASfK0eQrAhV2vVo2cDiyM"
                   alt="Hisham Alkaed"
                   className="rounded-full w-full h-full object-cover"
                 />
@@ -38,7 +39,7 @@ const About: React.FC = () => {
             </p>
             
             <p className="text-slate-400 mb-10">
-              I'm multilingual (English, Dutch, Arabic) and believe that diversity of thought and experience leads to better solutions. When I'm not coding or analyzing data, I enjoy exploring new machine learning research papers and contributing to open-source AI projects.
+              I'm multilingual (English, Dutch, Arabic) and believe that diversity of thought and experience leads to better solutions. When I'm not coding or analyzing data, I enjoy exploring new AI technologies and possibilities.
             </p>
             
             <div className="flex flex-wrap gap-4">
