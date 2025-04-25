@@ -20,27 +20,27 @@ const Education: React.FC = () => {
             <div className="space-y-8">
               <div className="relative pl-8 pb-8 border-l border-slate-700/50 last:border-0">
                 <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-cyan-500 transform -translate-x-1.5"></div>
-                <h4 className="text-lg font-bold text-slate-200 mb-1">Master of Science in Linguistics (Text Mining)</h4>
-                <p className="text-slate-400 mb-1">Utrecht University</p>
+                <h4 className="text-lg font-bold text-slate-200 mb-1">Master of Arts in Linguistics (Text Mining)</h4>
+                <p className="text-slate-400 mb-1">Vrije Universiteit Amsterdam</p>
                 <div className="flex items-center text-slate-500 text-sm mb-3">
                   <Calendar size={14} className="mr-1" />
-                  <span>2018 - 2020</span>
+                  <span>2022 - 2023</span>
                 </div>
-                <p className="text-slate-300 mb-2">GPA: 3.8/4.0</p>
+                <p className="text-slate-300 mb-2">GPA: 8.0/10.0</p>
                 <p className="text-slate-400">
-                  Specialized in advanced natural language processing techniques, focusing on information extraction from unstructured text and semantic web technologies.
+                  Specialized in advanced natural language processing techniques, focusing on information extraction from unstructured text, semantic web technologies and Large Language Models.
                 </p>
               </div>
               
               <div className="relative pl-8 border-l border-slate-700/50">
                 <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-blue-500 transform -translate-x-1.5"></div>
                 <h4 className="text-lg font-bold text-slate-200 mb-1">Bachelor of Science in Artificial Intelligence</h4>
-                <p className="text-slate-400 mb-1">University of Amsterdam</p>
+                <p className="text-slate-400 mb-1">Vrije Universiteit Amsterdam</p>
                 <div className="flex items-center text-slate-500 text-sm mb-3">
                   <Calendar size={14} className="mr-1" />
-                  <span>2015 - 2018</span>
+                  <span>2019 - 2022</span>
                 </div>
-                <p className="text-slate-300 mb-2">GPA: 3.7/4.0</p>
+                <p className="text-slate-300 mb-2">GPA: 8.8/10.0</p>
                 <p className="text-slate-400">
                   Fundamental education in AI principles, machine learning algorithms, knowledge representation, and cognitive computing systems.
                 </p>
@@ -56,7 +56,7 @@ const Education: React.FC = () => {
             </h3>
             
             <div className="space-y-6">
-              <div className="relative pl-8 pb-6 border-l border-slate-700/50 last:border-0">
+              {/* <div className="relative pl-8 pb-6 border-l border-slate-700/50 last:border-0">
                 <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-purple-500 transform -translate-x-1.5"></div>
                 <h4 className="text-lg font-bold text-slate-200 mb-1">Advanced Natural Language Processing</h4>
                 <p className="text-slate-400 mb-1">Stanford Online</p>
@@ -67,22 +67,35 @@ const Education: React.FC = () => {
                 <p className="text-slate-400">
                   Deep learning approaches for NLP including transformers, attention mechanisms, and transfer learning with language models.
                 </p>
-              </div>
+              </div> */}
               
               <div className="relative pl-8 pb-6 border-l border-slate-700/50 last:border-0">
                 <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-cyan-400 transform -translate-x-1.5"></div>
-                <h4 className="text-lg font-bold text-slate-200 mb-1">Knowledge Graphs: Essentials & Foundations</h4>
-                <p className="text-slate-400 mb-1">Neo4j Graph Academy</p>
+                <h4 className="text-lg font-bold text-slate-200 mb-1">Knowledge Graphs Essentials</h4>
+                <p className="text-slate-400 mb-1">Taxonic Academy</p>
                 <div className="flex items-center text-slate-500 text-sm mb-3">
                   <Calendar size={14} className="mr-1" />
-                  <span>2021</span>
+                  <span>2024</span>
+                </div>
+                <p className="text-slate-400">
+                  Comprehensive training in knowledge graph design, implementation, and query optimization techniques.
+                </p>
+              </div>
+
+              <div className="relative pl-8 pb-6 border-l border-slate-700/50 last:border-0">
+                <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-cyan-400 transform -translate-x-1.5"></div>
+                <h4 className="text-lg font-bold text-slate-200 mb-1">Knowledge Graphs Foundations</h4>
+                <p className="text-slate-400 mb-1">Taxonic Academy</p>
+                <div className="flex items-center text-slate-500 text-sm mb-3">
+                  <Calendar size={14} className="mr-1" />
+                  <span>2024</span>
                 </div>
                 <p className="text-slate-400">
                   Comprehensive training in knowledge graph design, implementation, and query optimization techniques.
                 </p>
               </div>
               
-              <div className="relative pl-8 pb-6 border-l border-slate-700/50 last:border-0">
+              {/* <div className="relative pl-8 pb-6 border-l border-slate-700/50 last:border-0">
                 <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-emerald-500 transform -translate-x-1.5"></div>
                 <h4 className="text-lg font-bold text-slate-200 mb-1">Machine Learning Engineering</h4>
                 <p className="text-slate-400 mb-1">DeepLearning.AI</p>
@@ -93,9 +106,9 @@ const Education: React.FC = () => {
                 <p className="text-slate-400">
                   Building scalable ML pipelines, model deployment, and monitoring systems in production environments.
                 </p>
-              </div>
+              </div> */}
               
-              <div className="relative pl-8 border-l border-slate-700/50">
+              {/* <div className="relative pl-8 border-l border-slate-700/50">
                 <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-blue-500 transform -translate-x-1.5"></div>
                 <h4 className="text-lg font-bold text-slate-200 mb-1">Data Science Professional Certificate</h4>
                 <p className="text-slate-400 mb-1">IBM</p>
@@ -106,7 +119,7 @@ const Education: React.FC = () => {
                 <p className="text-slate-400">
                   Comprehensive data science training covering statistical analysis, data visualization, machine learning, and data ethics.
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

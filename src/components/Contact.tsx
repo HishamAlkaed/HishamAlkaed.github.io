@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
                   <MapPin className="text-cyan-400 mt-1 mr-3" size={20} />
                   <div>
                     <h4 className="text-slate-300 font-medium mb-1">Location</h4>
-                    <p className="text-slate-400">Amsterdam, The Netherlands</p>
+                    <p className="text-slate-400">The Hague, The Netherlands</p>
                   </div>
                 </div>
               </div>

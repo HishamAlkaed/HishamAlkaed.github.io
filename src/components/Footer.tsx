@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
                 <Github size={18} />
               </a>
               <a
-                href="https://linkedin.com/in/hishamalkaed"
+                href="https://www.linkedin.com/in/hisham-alkaed-898634196/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-300 shadow-lg"
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                 <Linkedin size={18} />
               </a>
               <a
-                href="mailto:hisham.alkaed@example.com"
+                href="mailto:hishamalkaed@outlook.com"
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-300 shadow-lg"
               >
                 <Mail size={18} />

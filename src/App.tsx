@@ -110,7 +110,7 @@ function App() {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/hishamalkaed"
+              href="https://www.linkedin.com/in/hisham-alkaed-898634196/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-white transition-colors duration-300"
@@ -118,7 +118,7 @@ function App() {
               <Linkedin size={20} />
             </a>
             <a
-              href="mailto:hisham.alkaed@example.com"
+              href="mailto:hishamalkaed@outlook.com"
               className="text-slate-400 hover:text-white transition-colors duration-300"
             >
               <Mail size={20} />
