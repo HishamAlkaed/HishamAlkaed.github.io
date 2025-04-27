@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 interface FormState {
   name: string;
@@ -64,29 +65,45 @@ const Contact: React.FC = () => {
     }
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+  
     if (!validateForm()) return;
-    
+  
     setIsSubmitting(true);
-    
-    // Simulate API call
+  
     try {
-      // In a real application, you would send the form data to a backend
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Replace with your EmailJS Service ID, Template ID, and Public Key
+      const serviceId = 'service_1lmzuu8';
+      const templateId = 'template_bxwce0l';
+      const publicKey = 'PZpcCAXBpEd6UlleE';
+  
+      // Send email using EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        publicKey
+      );
+  
       setSubmitStatus('success');
       setFormData({
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
       });
     } catch (error) {
+      console.error('Failed to send email:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
