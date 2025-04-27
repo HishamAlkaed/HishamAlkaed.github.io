@@ -118,7 +118,7 @@ const Skills: React.FC = () => {
                         className="skill-bar h-full w-0 rounded-full transition-all duration-1000 ease-out"
                         data-level={skill.level}
                         style={{
-                          background: `linear-gradient(90deg, var(--tw-gradient-from, #06b6d4), var(--tw-gradient-to, #3b82f6) ${skill.level}%, transparent ${skill.level}%)`,
+                          background: `linear-gradient(120deg, #C0C0C0 ${skill.level}%`,
                           width: '0%'
                         }}
                       ></div>
