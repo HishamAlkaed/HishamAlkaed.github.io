@@ -20,7 +20,8 @@ const Skills: React.FC = () => {
         { name: "SPARQL", level: 85 },
         { name: "R", level: 65 },
         { name: "Prolog", level: 70 },
-        { name: "GOAL", level: 70 }
+        { name: "GOAL", level: 70 },
+        { name: "MATLAB", level: 70 }
       ]
     },
     {
@@ -43,7 +44,6 @@ const Skills: React.FC = () => {
         { name: "SKlearn", level: 90 },
         { name: "Hugging Face", level: 90 },
         { name: "Streamlit", level: 85 },
-        { name: "Neo4j", level: 70 },
         { name: "npm", level: 80 },
         { name: "Elasticsearch", level: 75 },
         { name: "Docker", level: 70 },
@@ -57,7 +57,10 @@ const Skills: React.FC = () => {
         { name: "ETL Pipelines", level: 85 },
         { name: "Knowledge Graphs", level: 95 },
         { name: "Data Visualization", level: 80 },
-        { name: "Linked Data Platforms", level: 85 }
+        { name: "Linked (open) Data Platforms", level: 85 },
+        { name: "Fuseki", level: 85 },
+        { name: "Protege", level: 85 },
+        { name: "GraphDB", level: 85 },
       ]
     }
   ];
@@ -135,7 +138,9 @@ const Skills: React.FC = () => {
               "Data Mining", "Information Retrieval", "Recommender Systems", "BERT", "GPT Models",
               "Docker", "Git", "Semantic Web", "Ontology Engineering", "Prompt Engineering",
               "Neo4j", "PostgreSQL", "Text Classification", "Named Entity Recognition", "Sentiment Analysis",
-              "Web Scraping", "REST APIs", "Graph Databases", "Data Annotation", "Model Deployment"
+              "Web Scraping", "REST APIs", "Graph Databases", "Data Annotation", "Model Deployment",
+              "Gensim", "spaCy", "NLTK", "Stanza", 
+              "Calculus", "Linear Algebra", "Statistics" 
             ].map((skill, index) => (
               <span 
                 key={index}

@@ -91,7 +91,7 @@ function App() {
               </button>
             ))}
             <a
-              href="/hisham_resume.pdf"
+              href="https://github.com/HishamAlkaed/HishamAlkaed.github.io/raw/main/cv2025.pdf"
               download
               className="flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
             >
@@ -157,7 +157,7 @@ function App() {
                 </button>
               ))}
               <a
-                href="/hisham_resume.pdf"
+                href="https://github.com/HishamAlkaed/HishamAlkaed.github.io/raw/main/cv2025.pdf"
                 download
                 className="flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-300 py-2"
               >

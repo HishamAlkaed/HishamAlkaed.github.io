@@ -9,61 +9,61 @@ interface ProjectData {
   tags: string[];
   githubLink?: string;
   demoLink?: string;
+  paper?: string;
 }
 
 const Projects: React.FC = () => {
   const [projects] = useState<ProjectData[]>([
     {
       id: 1,
-      title: "Knowledge Graph-Based Search Engine",
-      description: "Developed a semantic search engine powered by knowledge graphs that improves search accuracy by understanding entity relationships and context. Built using Python, RDF technologies, and SPARQL.",
+      title: "From Words to Images: Exploring the Crucial Role of Textual Modality in Multimodal Hate Speech Detection.",
+      description: "Engineered a multimodal hate speech detection system for memes, fusing text embeddings with visual embeddings via late fusion and utilizing ensemble modeling. ",
       image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg",
-      tags: ["Knowledge Graphs", "SPARQL", "Python", "Semantic Web"],
-      githubLink: "https://github.com/hishamalkaed/kg-search-engine",
-      demoLink: "https://kg-search-demo.hishamalkaed.com"
+      tags: ["Python", "NLP", "LLMs", "Fine-Tuning", "ML", "Ensemble", "Image Processing", "ResNet", "Late Fusion", "Early Fusion", ],
+      githubLink: "https://github.com/HishamAlkaed/Master_Thesis",
+      paper: "https://github.com/HishamAlkaed/Master_Thesis/raw/main/Thesis_paper_Hisham_Alkaed.pdf"
     },
     {
       id: 2,
-      title: "Multilingual NLP Document Classifier",
-      description: "Created a machine learning system that automatically classifies documents in multiple languages (English, Dutch, Arabic). Implemented using transformers with fine-tuning for domain-specific terminology.",
-      image: "https://images.pexels.com/photos/4551916/pexels-photo-4551916.jpeg",
-      tags: ["NLP", "Transformers", "Multilingual", "PyTorch", "Document Classification"],
-      githubLink: "https://github.com/hishamalkaed/multilingual-classifier"
+      title: "Entity Prediction Tasks with an open-world assumption and noisy environment.",
+      description: "Contributed to a research project on entity prediction tasks, focusing on open-world assumptions and noisy environments. Developed a 20-questions game using Python, Yago knowledge graph and SPARQL queries.",
+      image: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
+      tags: ["SPARQL", "Python", "Knowledge Graphs", "GraphDB", "Protege", "RDF"],
+      githubLink: "https://github.com/hasan-sh/20-questions"
     },
     {
       id: 3,
-      title: "Policy Data Dashboard",
-      description: "Interactive visualization dashboard for monitoring and analyzing policy data metrics. Built with Python, Streamlit, and D3.js for dynamic data exploration and trend analysis.",
-      image: "https://images.pexels.com/photos/920116/pexels-photo-920116.jpeg",
-      tags: ["Data Visualization", "Python", "Streamlit", "D3.js", "Analytics"],
-      demoLink: "https://policy-dashboard.hishamalkaed.com"
+      title: "Book Recommender application.",
+      description: "Used SPARQL, GraphDB, SQL and React to develop a modular book recommender application that can be connected to any knowledge graph.",
+      image: "https://images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg",
+      tags: ["SPARQL", "Python", "Knowledge Graphs", "GraphDB", "Protege", "RDF", "SQL", "React"],
+      githubLink: "https://github.com/HishamAlkaed/RecommendingBooks"
     },
     {
       id: 4,
-      title: "ETL Pipeline for Knowledge Graphs",
-      description: "Developed an Extract-Transform-Load pipeline that converts structured and unstructured data into knowledge graph triples. Handles diverse data sources with validation and quality checks.",
-      image: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg",
-      tags: ["ETL", "Python", "RDF", "Data Integration", "Knowledge Engineering"],
-      githubLink: "https://github.com/hishamalkaed/knowledge-graph-etl"
+      title: "PDFs to Insights: Infromation Exraction Pipeline.",
+      description: "Completed an 8-month project involving web crawling, scraping, PDF-to-JSON text parsing, data anonymization, and integration with Elasticsearch to structure and search large volumes of unstructured data. Developed two interactive dashboards using Streamlit and Elastic Search, designed for reusability and modularity across different datasets and use cases.",
+      image: "https://images.pexels.com/photos/27141316/pexels-photo-27141316/free-photo-of-options-on-device-screen.jpeg",
+      tags: ["Python", "NLP", "Information Extraction", "Web Scraping", "Streamlit", "Elasticsearch", "Data Anonymization"],
     },
     {
       id: 5,
-      title: "Automated Document Information Extraction",
-      description: "AI system that extracts structured information from technical documents using NLP and computer vision. Processes PDFs, images, and text documents with high accuracy.",
-      image: "https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg",
-      tags: ["NLP", "OCR", "Information Extraction", "TensorFlow", "Python"],
-      githubLink: "https://github.com/hishamalkaed/doc-extraction",
-      demoLink: "https://extract.hishamalkaed.com"
+      title: "Simulation of Covid19 infection behaviour",
+      description: "Using Python and Pygame an engine has been made that simulates the behaviour of Covid19 in infecting people.",
+      image: "https://images.pexels.com/photos/7722850/pexels-photo-7722850.jpeg",
+      tags: ["Python", "Pygame", "Simulation"],
+      githubLink: "https://github.com/HishamAlkaed/embodied_ai"
     },
-    {
-      id: 6,
-      title: "Evolutionary Algorithm Simulator",
-      description: "Educational tool that visualizes different evolutionary algorithms solving optimization problems. Includes genetic algorithms, particle swarm optimization, and simulated annealing.",
-      image: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
-      tags: ["Evolutionary Algorithms", "JavaScript", "React", "Visualization", "Education"],
-      githubLink: "https://github.com/hishamalkaed/evo-simulator",
-      demoLink: "https://evo-sim.hishamalkaed.com"
-    }
+    
+    // {
+    //   id: 6,
+    //   title: "Evolutionary Algorithm Simulator",
+    //   description: "Educational tool that visualizes different evolutionary algorithms solving optimization problems. Includes genetic algorithms, particle swarm optimization, and simulated annealing.",
+    //   image: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
+    //   tags: ["Evolutionary Algorithms", "JavaScript", "React", "Visualization", "Education"],
+    //   githubLink: "https://github.com/hishamalkaed/evo-simulator",
+    //   demoLink: "https://evo-sim.hishamalkaed.com"
+    // }
   ]);
 
   return (
@@ -125,6 +125,17 @@ const Projects: React.FC = () => {
                     >
                       <ExternalLink size={16} className="mr-1" />
                       Live Demo
+                    </a>
+                  )}
+                  {project.paper && (
+                    <a 
+                      href={project.paper}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+                    >
+                      <ExternalLink size={16} className="mr-1" />
+                      Paper
                     </a>
                   )}
                 </div>
