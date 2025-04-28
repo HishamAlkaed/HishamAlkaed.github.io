@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Building2, ChevronDown, ChevronUp } from 'lucide-react';
+import AnimatedCard from './AnimatedCard';
+import AnimatedSection from './AnimatedSection';
 
 interface ExperienceData {
   id: number;
@@ -87,7 +89,7 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+    <AnimatedSection id="experience" className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold mb-12 text-center">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Professional Experience</span>
@@ -111,7 +113,9 @@ const Experience: React.FC = () => {
 
                 {/* Content */}
                 <div className="ml-8 md:ml-0 md:w-1/2 md:px-8">
-                  <div className="bg-slate-800/50 p-6 rounded-xl backdrop-blur-sm border border-slate-700/50 hover:shadow-lg hover:shadow-blue-900/10 transition-all duration-300">
+                  <AnimatedCard
+                    className="bg-slate-800/50 p-6 rounded-xl backdrop-blur-sm border border-slate-700/50 hover:shadow-lg hover:shadow-blue-900/10 transition-all duration-300"
+                  >
                     <div className="flex justify-between items-start">
                       <div>
                         <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
@@ -126,7 +130,7 @@ const Experience: React.FC = () => {
                       </div>
                       <button 
                         onClick={() => toggleExpand(exp.id)}
-                        className="text-slate-400 hover:text-cyan-400 transition-colors duration-300"
+                        className="text-slate-400 hover:text-cyan-400 transition-colors duration-300 transform hover:scale-110"
                         aria-label={exp.expanded ? "Collapse details" : "Expand details"}
                       >
                         {exp.expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -136,11 +140,15 @@ const Experience: React.FC = () => {
                     <p className="text-slate-400 mb-4">{exp.description}</p>
 
                     {exp.expanded && (
-                      <div className="space-y-2 mt-4 border-t border-slate-700/50 pt-4">
+                      <div className="space-y-2 mt-4 border-t border-slate-700/50 pt-4 animate-fadeIn">
                         <h4 className="text-sm font-semibold text-cyan-400 mb-2">Key Achievements</h4>
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, i) => (
-                            <li key={i} className="flex items-start">
+                            <li 
+                              key={i} 
+                              className="flex items-start animate-slideIn"
+                              style={{ animationDelay: `${i * 0.1}s` }}
+                            >
                               <span className="text-cyan-500 mr-2">•</span>
                               <span className="text-slate-300">{achievement}</span>
                             </li>
@@ -148,14 +156,49 @@ const Experience: React.FC = () => {
                         </ul>
                       </div>
                     )}
-                  </div>
+                  </AnimatedCard>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+
+      <style>
+        {`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
+          }
+          
+          .animate-slideIn {
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+          }
+        `}
+      </style>
+    </AnimatedSection>
   );
 };
 
