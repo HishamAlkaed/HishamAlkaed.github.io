@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Building2, ChevronDown, ChevronUp } from 'lucide-react';
 import AnimatedCard from './AnimatedCard';
 import AnimatedSection from './AnimatedSection';
@@ -14,6 +14,23 @@ interface ExperienceData {
 }
 
 const Experience: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const [experiences, setExperiences] = useState<ExperienceData[]>([
     {
       id: 1,
@@ -113,50 +130,91 @@ const Experience: React.FC = () => {
 
                 {/* Content */}
                 <div className="ml-8 md:ml-0 md:w-1/2 md:px-8">
-                  <AnimatedCard
-                    className="bg-slate-800/50 p-6 rounded-xl backdrop-blur-sm border border-slate-700/50 hover:shadow-lg hover:shadow-blue-900/10 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
-                        <div className="flex items-center text-slate-400 mb-2">
-                          <Building2 size={16} className="mr-1" />
-                          <span>{exp.company}</span>
+                  {isMobile ? (
+                    <div className="bg-slate-800/50 p-6 rounded-xl backdrop-blur-sm border border-slate-700/50">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
+                          <div className="flex items-center text-slate-400 mb-2">
+                            <Building2 size={16} className="mr-1" />
+                            <span>{exp.company}</span>
+                          </div>
+                          <div className="flex items-center text-slate-500 text-sm mb-4">
+                            <Calendar size={14} className="mr-1" />
+                            <span>{exp.period}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center text-slate-500 text-sm mb-4">
-                          <Calendar size={14} className="mr-1" />
-                          <span>{exp.period}</span>
-                        </div>
+                        <button 
+                          onClick={() => toggleExpand(exp.id)}
+                          className="text-slate-400 hover:text-cyan-400 transition-colors duration-300"
+                          aria-label={exp.expanded ? "Collapse details" : "Expand details"}
+                        >
+                          {exp.expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </button>
                       </div>
-                      <button 
-                        onClick={() => toggleExpand(exp.id)}
-                        className="text-slate-400 hover:text-cyan-400 transition-colors duration-300 transform hover:scale-110"
-                        aria-label={exp.expanded ? "Collapse details" : "Expand details"}
-                      >
-                        {exp.expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                      </button>
+
+                      <p className="text-slate-400 mb-4">{exp.description}</p>
+
+                      {exp.expanded && (
+                        <div className="space-y-2 mt-4 border-t border-slate-700/50 pt-4">
+                          <h4 className="text-sm font-semibold text-cyan-400 mb-2">Key Achievements</h4>
+                          <ul className="space-y-2">
+                            {exp.achievements.map((achievement, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="text-cyan-500 mr-2">•</span>
+                                <span className="text-slate-300">{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
-
-                    <p className="text-slate-400 mb-4">{exp.description}</p>
-
-                    {exp.expanded && (
-                      <div className="space-y-2 mt-4 border-t border-slate-700/50 pt-4 animate-fadeIn">
-                        <h4 className="text-sm font-semibold text-cyan-400 mb-2">Key Achievements</h4>
-                        <ul className="space-y-2">
-                          {exp.achievements.map((achievement, i) => (
-                            <li 
-                              key={i} 
-                              className="flex items-start animate-slideIn"
-                              style={{ animationDelay: `${i * 0.1}s` }}
-                            >
-                              <span className="text-cyan-500 mr-2">•</span>
-                              <span className="text-slate-300">{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
+                  ) : (
+                    <AnimatedCard
+                      className="bg-slate-800/50 p-6 rounded-xl backdrop-blur-sm border border-slate-700/50 hover:shadow-lg hover:shadow-blue-900/10 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
+                          <div className="flex items-center text-slate-400 mb-2">
+                            <Building2 size={16} className="mr-1" />
+                            <span>{exp.company}</span>
+                          </div>
+                          <div className="flex items-center text-slate-500 text-sm mb-4">
+                            <Calendar size={14} className="mr-1" />
+                            <span>{exp.period}</span>
+                          </div>
+                        </div>
+                        <button 
+                          onClick={() => toggleExpand(exp.id)}
+                          className="text-slate-400 hover:text-cyan-400 transition-colors duration-300 transform hover:scale-110"
+                          aria-label={exp.expanded ? "Collapse details" : "Expand details"}
+                        >
+                          {exp.expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </button>
                       </div>
-                    )}
-                  </AnimatedCard>
+
+                      <p className="text-slate-400 mb-4">{exp.description}</p>
+
+                      {exp.expanded && (
+                        <div className="space-y-2 mt-4 border-t border-slate-700/50 pt-4 animate-fadeIn">
+                          <h4 className="text-sm font-semibold text-cyan-400 mb-2">Key Achievements</h4>
+                          <ul className="space-y-2">
+                            {exp.achievements.map((achievement, i) => (
+                              <li 
+                                key={i} 
+                                className="flex items-start animate-slideIn"
+                                style={{ animationDelay: `${i * 0.1}s` }}
+                              >
+                                <span className="text-cyan-500 mr-2">•</span>
+                                <span className="text-slate-300">{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </AnimatedCard>
+                  )}
                 </div>
               </div>
             ))}
