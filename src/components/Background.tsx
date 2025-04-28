@@ -1,10 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+
+interface Particle {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  color: string;
+  baseX: number;
+  baseY: number;
+  baseSize: number;
+}
 
 const Background: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [scrollY, setScrollY] = useState(0);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const particlesRef = useRef<Particle[]>([]);
+  const animationFrameRef = useRef<number>();
+  const isMobileRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,155 +26,150 @@ const Background: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Check if device is mobile
+    isMobileRef.current = window.innerWidth <= 768;
+
     // Set canvas dimensions
     const updateCanvasSize = () => {
       if (!canvas) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      isMobileRef.current = window.innerWidth <= 768;
     };
-
-    window.addEventListener('resize', updateCanvasSize);
-    updateCanvasSize();
 
     // Mouse move handler
     const handleMouseMove = (e: MouseEvent) => {
+      if (isMobileRef.current) return;
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
-    // Scroll handler
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    // Touch move handler
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isMobileRef.current) return;
+      const touch = e.touches[0];
+      mouseRef.current = { x: touch.clientX, y: touch.clientY };
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
+    // Initialize particles
+    const initParticles = () => {
+      const particles: Particle[] = [];
+      const numberOfParticles = Math.min(100, Math.floor(window.innerWidth / 20));
 
-    // Create particles
-    const particlesArray: Particle[] = [];
-    const numberOfParticles = Math.min(100, Math.floor(window.innerWidth / 20));
-
-    class Particle {
-      x: number = 0;
-      y: number = 0;
-      size: number = 0;
-      speedX: number = 0;
-      speedY: number = 0;
-      color: string = '';
-      baseSize: number = 0;
-      baseSpeed: number = 0;
-      baseX: number = 0;
-      baseY: number = 0;
-
-      constructor() {
-        if (!canvas) return;
-        this.baseX = Math.random() * canvas.width;
-        this.baseY = Math.random() * canvas.height;
-        this.x = this.baseX;
-        this.y = this.baseY;
-        this.baseSize = Math.random() * 3 + 1;
-        this.size = this.baseSize;
-        this.baseSpeed = Math.random() * 0.5 - 0.25;
-        this.speedX = this.baseSpeed;
-        this.speedY = this.baseSpeed;
-        
-        // Gradient colors: cyan, blue, purple
-        const colors = ['rgba(8, 145, 178, 0.7)', 'rgba(59, 130, 246, 0.7)', 'rgba(124, 58, 237, 0.7)'];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: Math.random() * 0.5 - 0.25,
+          speedY: Math.random() * 0.5 - 0.25,
+          color: `rgba(${Math.floor(Math.random() * 100) + 155}, ${Math.floor(Math.random() * 100) + 155}, ${Math.floor(Math.random() * 100) + 155}, 0.7)`,
+          baseX: Math.random() * canvas.width,
+          baseY: Math.random() * canvas.height,
+          baseSize: Math.random() * 3 + 1
+        });
       }
+      particlesRef.current = particles;
+    };
 
-      update() {
-        if (!canvas) return;
+    // Update particle positions
+    const updateParticles = () => {
+      const particles = particlesRef.current;
+      const mouse = mouseRef.current;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         
-        // Mouse interaction
-        const dx = this.x - mouseRef.current.x;
-        const dy = this.y - mouseRef.current.y;
+        // Calculate distance from mouse
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
+        // Mouse interaction
         if (distance < 150) {
           const angle = Math.atan2(dy, dx);
           const force = (150 - distance) / 150;
-          this.x += Math.cos(angle) * force * 3;
-          this.y += Math.sin(angle) * force * 3;
+          p.x += Math.cos(angle) * force * 5;
+          p.y += Math.sin(angle) * force * 5;
         } else {
           // Return to base position
-          const dx = this.baseX - this.x;
-          const dy = this.baseY - this.y;
-          this.x += dx * 0.05;
-          this.y += dy * 0.05;
+          const dx = p.baseX - p.x;
+          const dy = p.baseY - p.y;
+          p.x += dx * 0.1;
+          p.y += dy * 0.1;
         }
 
-        // Scroll interaction
-        this.size = this.baseSize + (Math.sin(scrollY * 0.01) * 0.5);
-        this.speedX = this.baseSpeed + (Math.sin(scrollY * 0.01) * 0.2);
-        this.speedY = this.baseSpeed + (Math.cos(scrollY * 0.01) * 0.2);
-
         // Keep particles within canvas bounds
-        if (this.x > canvas.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas.width;
-        
-        if (this.y > canvas.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas.height;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    const init = () => {
-      for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
+        if (p.x > canvas.width) p.x = 0;
+        else if (p.x < 0) p.x = canvas.width;
+        if (p.y > canvas.height) p.y = 0;
+        else if (p.y < 0) p.y = canvas.height;
       }
     };
 
-    const connect = () => {
-      if (!ctx) return;
+    // Draw particles and connections
+    const draw = () => {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const particles = particlesRef.current;
+      
+      // Draw particles
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw connections
       const maxDistance = 150;
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-          const dx = particlesArray[a].x - particlesArray[b].x;
-          const dy = particlesArray[a].y - particlesArray[b].y;
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
             const opacity = 1 - distance / maxDistance;
-            const scrollEffect = Math.sin(scrollY * 0.01) * 0.2 + 0.8;
-            ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.5 * scrollEffect})`;
-            ctx.lineWidth = 1 + (Math.sin(scrollY * 0.01) * 0.5);
+            ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.5})`;
+            ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
             ctx.stroke();
           }
         }
       }
     };
 
+    // Animation loop
     const animate = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-      }
-      connect();
-      requestAnimationFrame(animate);
+      updateParticles();
+      draw();
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    init();
+    // Initialize
+    updateCanvasSize();
+    initParticles();
     animate();
 
+    // Event listeners
+    window.addEventListener('resize', updateCanvasSize);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove);
+
+    // Cleanup
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleTouchMove);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, [scrollY]);
+  }, []);
 
   return (
     <canvas

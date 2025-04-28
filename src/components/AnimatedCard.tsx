@@ -10,8 +10,19 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ children, className = '' })
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -28,6 +39,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ children, className = '' })
     }
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       if (cardRef.current) {
         observer.unobserve(cardRef.current);
       }
@@ -35,6 +47,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ children, className = '' })
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     if (!cardRef.current) return;
     
     const rect = cardRef.current.getBoundingClientRect();
@@ -44,8 +57,8 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ children, className = '' })
     setMousePosition({ x, y });
   };
 
-  const rotateX = ((mousePosition.y - 150) / 45) * -1;
-  const rotateY = ((mousePosition.x - 150) / 45);
+  const rotateX = isMobile ? 0 : ((mousePosition.y - 150) / 45) * -1;
+  const rotateY = isMobile ? 0 : ((mousePosition.x - 150) / 45);
 
   return (
     <div
@@ -53,16 +66,18 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ children, className = '' })
       className={`transition-all duration-500 ease-out transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       } ${
-        isHovered ? 'scale-[1.02] shadow-xl' : 'scale-100 shadow-lg'
+        isHovered && !isMobile ? 'scale-[1.02] shadow-xl' : 'scale-100 shadow-lg'
       } ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
       onMouseMove={handleMouseMove}
       style={{
-        transform: isHovered 
-          ? `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
-          : 'perspective(1000px) rotateX(0) rotateY(0) scale(1)',
-        transition: 'transform 0.1s ease-out'
+        transform: isMobile 
+          ? 'none'
+          : isHovered 
+            ? `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
+            : 'perspective(1000px) rotateX(0) rotateY(0) scale(1)',
+        transition: isMobile ? 'none' : 'transform 0.1s ease-out'
       }}
     >
       {children}

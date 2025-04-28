@@ -10,8 +10,19 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className =
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,6 +40,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className =
     }
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
@@ -42,10 +54,10 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className =
       className={`transition-all duration-700 ease-out transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       } ${
-        isHovered ? 'scale-[1.02]' : 'scale-100'
+        isHovered && !isMobile ? 'scale-[1.02]' : 'scale-100'
       } ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
       {children}
     </section>
