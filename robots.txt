@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hishamalkaed.com/sitemap.xml
